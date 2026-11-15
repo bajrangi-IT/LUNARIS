@@ -1,0 +1,26 @@
+{
+  "name": "lunaris",
+  "version": "1.0.0",
+  "description": "LUNARIS: Lunar Mission Intelligence & Landing Site Navigator - NASA Space Apps Challenge 2026",
+  "private": true,
+  "scripts": {
+    "build": "npm --prefix client run build",
+    "dev": "npm --prefix client run dev",
+    "preview": "npm --prefix client run preview",
+    "server": "uvicorn server.main:app --host 0.0.0.0 --port 8000 --reload",
+    "start": "npm --prefix client run preview"
+  },
+  "keywords": [
+    "nasa",
+    "space-apps",
+    "moon",
+    "lunar-landing",
+    "ephemeris",
+    "horizons",
+    "lola",
+    "dem",
+    "artemis"
+  ],
+  "author": "LUNARIS Mission Team",
+  "license": "MIT"
+}

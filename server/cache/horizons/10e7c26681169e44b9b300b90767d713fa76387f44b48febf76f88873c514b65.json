@@ -1,0 +1,61 @@
+{
+  "target_id": "399",
+  "target_name": "Earth",
+  "observer": {
+    "body": "301 (Moon)",
+    "center": "coord@301",
+    "latitude_deg": -86.04,
+    "longitude_east_deg": 2.6999999999999886,
+    "altitude_km": 5.0,
+    "coord_type": "GEODETIC"
+  },
+  "start_time_utc": "2026-12-15 00:00",
+  "stop_time_utc": "2026-12-15 06:00",
+  "step_size": "1h",
+  "source": "NASA/JPL Horizons System API",
+  "source_url": "https://ssd.jpl.nasa.gov/api/horizons.api",
+  "retrieved_at": "2026-11-15T06:13:20.410288+00:00",
+  "units": {
+    "azimuth": "degrees (0-360 clockwise from North through East)",
+    "elevation": "degrees (-90 to +90 above local astronomical horizon)"
+  },
+  "cached": false,
+  "is_fallback": false,
+  "records": [
+    {
+      "timestamp_utc": "2026-Dec-15 00:00",
+      "azimuth_deg": 351.5863,
+      "elevation_deg": 4.2352
+    },
+    {
+      "timestamp_utc": "2026-Dec-15 01:00",
+      "azimuth_deg": 351.5371,
+      "elevation_deg": 4.2928
+    },
+    {
+      "timestamp_utc": "2026-Dec-15 02:00",
+      "azimuth_deg": 351.4882,
+      "elevation_deg": 4.3504
+    },
+    {
+      "timestamp_utc": "2026-Dec-15 03:00",
+      "azimuth_deg": 351.4397,
+      "elevation_deg": 4.4081
+    },
+    {
+      "timestamp_utc": "2026-Dec-15 04:00",
+      "azimuth_deg": 351.3915,
+      "elevation_deg": 4.4657
+    },
+    {
+      "timestamp_utc": "2026-Dec-15 05:00",
+      "azimuth_deg": 351.3437,
+      "elevation_deg": 4.5232
+    },
+    {
+      "timestamp_utc": "2026-Dec-15 06:00",
+      "azimuth_deg": 351.2963,
+      "elevation_deg": 4.5808
+    }
+  ]
+}

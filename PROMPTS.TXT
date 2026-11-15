@@ -1,0 +1,847 @@
+# LUNARIS — FINAL PRODUCT ENGINEERING PROMPTS
+## Five controlled upgrades for the existing application
+
+IMPORTANT: The previous 10 development prompts have already been completed. This is an existing functional application. DO NOT rebuild it from scratch.
+
+Apply each prompt incrementally. Inspect the current implementation before modifying anything. Preserve all working features, routes, APIs, calculations, components and scientific integrations.
+
+The goal is to transform LUNARIS into a polished, scientifically grounded, easy-to-use lunar mission-planning product.
+
+---
+
+# PROMPT 1 — COMPLETE UI/UX REFINEMENT AND DESIGN SYSTEM
+
+Act as a principal product designer, aerospace software UX architect and senior React frontend engineer.
+
+Your task is to redesign the existing LUNARIS application without destroying its functionality.
+
+The current application is too congested. There are too many cards, excessive information density, competing visual elements and insufficient visual hierarchy.
+
+I want a clean, elegant, premium scientific application that is exceptionally easy to navigate.
+
+## A. New visual identity
+
+Replace the current visual language with a sophisticated lunar research and mission operations aesthetic.
+
+Typography:
+
+- Primary font: Manrope.
+- Scientific numerical font: IBM Plex Mono.
+- Remove the existing generic fonts.
+- Load fonts efficiently using a reliable font source and sensible fallbacks.
+
+Visual palette:
+
+- Background: warm graphite / deep blue-grey.
+- Secondary surfaces: slightly lighter muted graphite.
+- Primary text: soft ivory.
+- Secondary text: muted silver.
+- Solar indicators: restrained amber.
+- Earth and communication indicators: muted cyan.
+- Successful validation: desaturated teal.
+- Warnings: muted orange.
+- Critical errors: restrained red.
+
+Avoid:
+- Neon colours.
+- Excessive gradients.
+- Excessive glassmorphism.
+- Overly rounded cards.
+- Unnecessary shadows.
+- Oversized headings.
+- Random accent colours.
+- Excessive animations.
+
+Create a professional light/dark theme system if feasible, with a comfortable default theme.
+
+## B. Simplify navigation
+
+Use these primary navigation destinations:
+
+1. Mission Overview
+2. Lunar Explorer
+3. Sun & Earth Observatory
+4. Power & Communication
+5. Site Comparison
+6. Data & Methodology
+
+Keep advanced tools inside contextual panels rather than creating excessive navigation items.
+
+The sidebar must be:
+- Compact.
+- Collapsible.
+- Clearly labelled.
+- Consistent.
+- Easy to understand.
+
+Do not show every metric on every page.
+
+## C. Redesign the Mission Overview
+
+The first screen must communicate the current mission context immediately.
+
+Show:
+
+- Selected landing region.
+- Selected coordinates.
+- Selected analysis date.
+- Data source status.
+- Solar availability.
+- Earth visibility.
+- Joint operational window.
+
+Use no more than four primary metric cards.
+
+Make the lunar globe or mission visualization the main visual focus.
+
+Provide a clear primary action: Open Mission Analysis.
+
+Add a compact recent analysis or selected scenario section only if it uses actual saved data.
+
+## D. Progressive disclosure
+
+Do not show all scientific parameters simultaneously.
+
+Use expandable sections for:
+- Advanced coordinates.
+- DEM configuration.
+- Solar panel assumptions.
+- Terrain uncertainty.
+- Communication thresholds.
+- Ephemeris settings.
+
+Default users should be able to operate the application without understanding planetary GIS.
+
+Advanced users must still have access to scientific controls.
+
+## E. Interaction quality
+
+Implement:
+- Clear tooltips.
+- Helpful empty states.
+- Consistent loading indicators.
+- Contextual error messages.
+- Keyboard-accessible controls.
+- Proper responsive behaviour.
+- Clear selected states.
+- Functional buttons.
+- Consistent spacing and typography.
+
+Do not add decorative components that have no actual function.
+
+## F. Preserve functionality
+
+Do not delete existing working scientific pages.
+
+Reorganize them and improve their presentation.
+
+Before finishing:
+- Inspect every route.
+- Check every navigation item.
+- Check all existing interactions.
+- Confirm existing API integrations remain functional.
+- Remove redundant components only after verifying they are unused.
+
+The final product must feel calm, sophisticated, spacious and professional.
+
+---
+
+# PROMPT 2 — COMPLETE GLOBAL MOON AND FULL-SPHERE LUNAR EXPLORER
+
+Act as a planetary cartography engineer, CesiumJS specialist and scientific 3D visualization architect.
+
+The current lunar map only displays a small portion of the Moon because the application is using limited tile coverage or an incorrectly configured WMTS layer.
+
+I want a COMPLETE GLOBAL MOON VIEW.
+
+This is a major product requirement.
+
+Do not simply enlarge the current regional tile or stretch one image across a globe.
+
+## A. Investigate the existing map implementation
+
+Inspect:
+
+- Current map library.
+- Current Moon Trek endpoint.
+- Current WMTS layer.
+- GetCapabilities response.
+- Available tile matrix sets.
+- Available projections.
+- Layer identifiers.
+- Global coverage.
+- Tile formats.
+- Zoom levels.
+- Geographic bounds.
+
+Do not invent endpoint URLs, layer names or tile matrix identifiers.
+
+Discover them from the actual NASA Moon Trek WMTS capabilities.
+
+Official resources:
+
+https://trek.nasa.gov/moon/
+
+https://trek.nasa.gov/tiles/
+
+## B. Full Moon imagery
+
+Prioritize the official Moon Trek global lunar imagery products.
+
+Investigate:
+
+1. LRO WAC Mosaic v2.
+2. LRO LROC WAC global mosaic.
+3. North Pole mosaic.
+4. South Pole mosaic.
+5. Available 3D Globe and Global Map projections.
+
+Use the global imagery product as the default complete lunar surface basemap.
+
+The application must display the whole lunar globe, including:
+- Near side.
+- Far side where global imagery coverage is available.
+- North polar region.
+- South polar region.
+- Equatorial regions.
+
+The globe must support rotation, zooming and smooth camera movement.
+
+If the selected WMTS layer does not cover the complete globe, do not pretend that it does.
+
+Find an actual global-coverage alternative from the available documented NASA services.
+
+## C. Proper tile streaming
+
+Implement a genuine tiled imagery architecture.
+
+Requirements:
+
+- Request tiles based on visible viewport.
+- Request higher-resolution tiles when zooming.
+- Request lower-resolution tiles when zooming out.
+- Load tiles progressively.
+- Cache tiles appropriately.
+- Avoid downloading an entire global mosaic.
+- Avoid requesting every tile simultaneously.
+- Handle missing tiles gracefully.
+- Avoid displaying one tile repeatedly as a texture.
+
+The globe must display the correct neighbouring tiles at the correct geographic positions.
+
+## D. Scientific globe integration
+
+Use a suitable spherical lunar visualization.
+
+Display:
+- Global Moon imagery.
+- Lunar coordinate grid.
+- Selected landing region.
+- Faustini Rim A marker.
+- Candidate landing locations.
+- Selected observer location.
+- Optional illumination overlay.
+- Optional elevation visualization where data exists.
+
+Support:
+- 3D globe mode.
+- Global 2D map mode.
+- South-pole regional mode.
+
+Add a smooth transition between global and regional views.
+
+## E. Faustini regional terrain
+
+When the user selects Faustini:
+
+- Zoom to the actual LM7 dataset extent.
+- Display the actual local terrain.
+- Overlay elevation-derived shading.
+- Show selected coordinates.
+- Allow the user to select another point within the dataset coverage.
+
+Use the actual DEM for terrain visualization.
+
+Do not replace missing terrain with procedural mountains.
+
+## F. Layer controls
+
+Create one compact layer selector.
+
+Available options should include only layers that actually exist:
+
+- Global lunar imagery.
+- Elevation.
+- Hillshade.
+- Slope.
+- LOLA measurement support.
+- Elevation uncertainty.
+- Landing candidate markers.
+
+Use progressive loading.
+
+## G. Visual requirements
+
+The globe should dominate the explorer screen.
+
+Avoid excessive surrounding panels.
+
+Use one compact contextual information panel that can be expanded or collapsed.
+
+The global Moon must remain visually clear.
+
+Deliver a complete full-globe experience, not just a south-pole tile viewer.
+
+---
+
+# PROMPT 3 — COMPLETE NASA TIFF AND XYZI DATA FUSION
+
+Act as a senior planetary GIS engineer, LiDAR researcher, scientific Python developer and geospatial data architect.
+
+All available Faustini LM7 TIFF and XYZI datasets have already been added to the project.
+
+DO NOT download duplicate datasets.
+
+DO NOT move, rename or overwrite the original scientific files.
+
+Your task is to discover, inspect, catalogue and intelligently use every available dataset.
+
+The DEM clones have NOT been added.
+
+Do not attempt to download them automatically.
+
+## A. Automatic dataset discovery
+
+Recursively inspect the existing data directories.
+
+Discover all actual:
+
+- .tif
+- .tiff
+- .xyzi
+- Associated metadata and README files.
+
+Generate an actual data inventory.
+
+For each file, inspect:
+
+- Filename.
+- File size.
+- File type.
+- CRS.
+- Dimensions.
+- Resolution.
+- NoData values.
+- Bounds.
+- Units.
+- Data type.
+- Availability.
+- Processing status.
+
+Do not assume filenames or metadata.
+
+Inspect the TIFF tags and geospatial metadata.
+
+For XYZI:
+- Inspect the format documentation.
+- Inspect the file header or initial records.
+- Determine its coordinate system.
+- Determine the actual field ordering.
+- Determine intensity or other available attributes.
+- Verify coordinate units.
+- Check whether coordinates are already aligned with the DEM.
+
+Do not assume the XYZI format or its column order without verification.
+
+## B. Use every available scientific product
+
+Use the following products according to their actual verified metadata.
+
+### 1. LDEM
+
+Primary elevation source.
+
+Use it for:
+- Real terrain rendering.
+- Terrain elevation.
+- Terrain profiles.
+- Terrain horizon.
+- Local slope derivation where necessary.
+- Shadow calculations.
+
+### 2. XYZI point cloud
+
+Use the actual LOLA point cloud for:
+- Displaying real observation points.
+- Understanding spatial measurement distribution.
+- Cross-checking the interpolated elevation model.
+- Comparing point observations with raster elevations.
+- Investigating discrepancies.
+- Displaying the actual laser-track observation structure.
+
+Create an optional point-cloud visualization layer.
+
+Use efficient point rendering, spatial indexing and decimation.
+
+Do not load the entire XYZI file into browser memory.
+
+Keep original measurement data unchanged.
+
+### 3. LDEC measurement-count raster
+
+Use it to:
+- Generate measurement-support maps.
+- Identify measurement density.
+- Display low-support regions.
+- Explain the difference between directly supported and interpolated terrain.
+
+Do not interpret low measurement density as proof of incorrect elevation.
+
+### 4. Slope raster
+
+Use the actual slope product for:
+- Landing terrain screening.
+- Slope heatmaps.
+- Candidate-area analysis.
+- Local terrain suitability.
+
+Preserve the source slope units.
+
+### 5. Total Z uncertainty
+
+Use it for:
+- Elevation uncertainty visualization.
+- Terrain horizon sensitivity.
+- Landing-region data confidence.
+- Uncertainty-aware site assessment.
+
+### 6. Slope uncertainty
+
+Use it for:
+- Slope confidence.
+- Screening-threshold sensitivity.
+- Identification of locations close to configured slope limits.
+
+## C. Spatial alignment
+
+This is critical.
+
+The LOLA GeoTIFF products use south-polar stereographic X/Y coordinates and MOON_ME / DE421 reference information.
+
+Inspect the actual CRS of every raster.
+
+Do not assume all datasets share identical transforms or bounds.
+
+Implement:
+- Raster-to-raster alignment checks.
+- Coordinate transformations.
+- NoData handling.
+- Spatial indexing.
+- Raster window reads.
+- Point-cloud to DEM comparison.
+- Correct local azimuth orientation.
+
+Use PyProj, Rasterio and GDAL as appropriate.
+
+Never use terrestrial WGS84 transformations as an unverified substitute for lunar coordinate reference systems.
+
+## D. Data fusion outputs
+
+Generate these products from the real source files:
+
+1. Terrain elevation map.
+2. Terrain slope map.
+3. LOLA measurement-support map.
+4. Elevation uncertainty map.
+5. Slope uncertainty map.
+6. XYZI point-cloud visualization.
+7. Terrain elevation profile.
+8. Local horizon profile.
+9. Landing-area terrain assessment.
+10. Data coverage and confidence report.
+
+All outputs must preserve source provenance.
+
+## E. Landing-area analysis
+
+Allow the user to select a location and configurable radius.
+
+Analyze:
+- Elevation range.
+- Mean slope.
+- Maximum slope.
+- Local roughness.
+- Elevation uncertainty.
+- Measurement density.
+- Terrain coverage.
+
+Use actual source data.
+
+Display a warning when a selected coordinate is outside the actual LM7 dataset footprint.
+
+Do not silently use extrapolated or unrelated terrain.
+
+## F. DEM clones
+
+The DEM clones are not currently available in the project.
+
+Therefore:
+
+- Do not generate fake clones.
+- Do not fabricate an ensemble.
+- Do not show a probabilistic illumination result.
+- Do not claim 100-member uncertainty validation.
+
+Create a future-compatible ensemble-processing interface, but keep it disabled until real clones are provided.
+
+## G. Performance
+
+- Use raster window reading.
+- Create lightweight derived tiles or meshes.
+- Cache processed products.
+- Use backend processing.
+- Avoid repeated full-raster reads.
+- Avoid excessive point-cloud rendering.
+- Keep the original source datasets unchanged.
+
+Create a Data Explorer page with a clean inventory and dataset availability indicators.
+
+---
+
+# PROMPT 4 — SCIENTIFIC INTELLIGENCE: TERRAIN, SUN, EARTH AND JOINT OPERATIONS
+
+Act as a computational astronomer, planetary scientist and lunar mission systems engineer.
+
+Integrate the real dataset-processing outputs with the existing JPL Horizons ephemeris engine.
+
+Do not invent scientific values.
+
+Do not use sample values, simulated demonstration values or hardcoded charts.
+
+## A. Real Sun and Earth positions
+
+Use the existing Horizons integration.
+
+For every selected coordinate and date, obtain actual:
+- Sun azimuth.
+- Sun elevation.
+- Earth azimuth.
+- Earth elevation.
+- UTC timestamps.
+
+Use the correct observer configuration.
+
+Validate coordinate conventions and output parsing.
+
+Keep the selected landing coordinate synchronized across all analysis engines.
+
+## B. Terrain-aware horizon
+
+Use the actual DEM.
+
+For each azimuth direction, calculate the local terrain horizon.
+
+Account for:
+- Terrain elevation.
+- Observer elevation.
+- Projected distances.
+- Lunar curvature.
+- Coordinate orientation.
+- Raster coverage.
+- NoData areas.
+
+Calculate terrain obstruction separately for Sun and Earth.
+
+Where supported, account for the apparent angular size of the Sun and Earth.
+
+Distinguish:
+- Geometric visibility.
+- Terrain-adjusted visibility.
+- Partial-disc visibility.
+
+Never treat a positive geometric elevation as proof of visibility above surrounding terrain.
+
+## C. Solar illumination
+
+Combine:
+- Horizons solar position.
+- Actual DEM terrain horizon.
+- Solar panel orientation.
+- Solar incidence.
+- Configurable panel area and efficiency.
+
+Calculate:
+- Solar visibility.
+- Continuous sunlight windows.
+- Shadow intervals.
+- Solar elevation profile.
+- Estimated instantaneous power.
+- Accumulated energy in Wh.
+
+Show all assumptions.
+
+## D. Direct-to-Earth visibility
+
+Combine:
+- Horizons Earth position.
+- Local terrain horizon.
+- Apparent Earth angular radius where supported.
+
+Calculate:
+- Geometric Earth visibility.
+- Terrain-adjusted Earth visibility.
+- Earthset and Earthrise events.
+- Blackout intervals.
+- Visibility duration.
+
+Clearly state that geometric line-of-sight does not guarantee an operational radio link.
+
+## E. Joint operational window engine
+
+This is a major LUNARIS differentiator.
+
+Calculate when the following conditions occur simultaneously:
+
+1. The Sun is visible above the terrain horizon.
+2. Solar panel incidence meets the configured requirement.
+3. Earth is visible above the terrain horizon.
+4. Earth elevation meets the configured communication geometry threshold.
+
+Generate:
+- Total sunlight duration.
+- Total Earth visibility duration.
+- Simultaneous operating duration.
+- Longest continuous joint window.
+- Solar-only periods.
+- Communication-only periods.
+- Complete blackout periods.
+
+Display these as three synchronized scientific timeline tracks.
+
+## F. Data confidence
+
+Use actual:
+- Elevation uncertainty.
+- Slope uncertainty.
+- Measurement density.
+- Terrain coverage.
+
+Display confidence information alongside the scientific result.
+
+Do not manufacture a single confidence percentage from unrelated datasets.
+
+If a rigorous uncertainty propagation is unavailable, display individual uncertainty metrics rather than a misleading combined score.
+
+## G. Scientific presentation
+
+Every metric must provide an expandable methodology explanation.
+
+Include:
+- Source.
+- Units.
+- Timestamp.
+- Resolution.
+- Calculation method.
+- Assumptions.
+- Limitations.
+
+Make the scientific engine usable from the main Mission Analysis page without forcing users to navigate multiple separate screens.
+
+---
+
+# PROMPT 5 — FINAL PRODUCT EXPERIENCE, MISSION WORKFLOW AND QUALITY ASSURANCE
+
+Act as a principal aerospace product designer, senior software engineer and scientific quality-assurance lead.
+
+The existing LUNARIS product must now feel complete, coherent and easy to use.
+
+Do not add more unrelated features.
+
+Focus on the end-to-end mission planning experience.
+
+## A. Unified user journey
+
+A user should be able to complete the following workflow:
+
+STEP 1: Open the complete global lunar globe.
+
+STEP 2: Search for Faustini or another supported landing region.
+
+STEP 3: Select a location directly on the map or enter custom coordinates.
+
+STEP 4: See the selected point's actual data coverage.
+
+STEP 5: Select the landing date and analysis duration.
+
+STEP 6: Calculate Sun and Earth positions using Horizons.
+
+STEP 7: Inspect actual local terrain and horizon obstruction.
+
+STEP 8: Review solar illumination.
+
+STEP 9: Review direct-to-Earth visibility.
+
+STEP 10: Review simultaneous operational windows.
+
+STEP 11: Compare an alternative location or date.
+
+STEP 12: Generate an evidence-backed mission assessment.
+
+All steps must be functional.
+
+## B. Mission Analysis as the primary workspace
+
+Create one unified mission-analysis experience.
+
+Use:
+- A compact mission configuration panel.
+- A dominant lunar map/globe.
+- A collapsible analysis panel.
+- Synchronized timelines.
+- A compact scientific summary.
+
+Do not display every metric simultaneously.
+
+Use tabs or expandable sections for:
+- Terrain.
+- Solar.
+- Communication.
+- Joint operations.
+- Data confidence.
+
+## C. Scenario comparison
+
+Support at least three scenarios where real data coverage permits.
+
+Allow comparison of:
+- Coordinates.
+- Dates.
+- Solar energy.
+- Illumination.
+- Earth visibility.
+- Joint operating windows.
+- Terrain suitability.
+- Data uncertainty.
+
+Clearly mark incomplete terrain analysis.
+
+Do not rank a scenario as scientifically superior if its necessary data is unavailable.
+
+## D. Mission replanning
+
+Allow users to duplicate a scenario and change its landing date or coordinate.
+
+Recompute all affected scientific metrics.
+
+Display a clear before-and-after comparison.
+
+Show exactly which values changed and why.
+
+Do not rely on AI-generated scientific results.
+
+## E. Evidence-backed reports
+
+Generate a professional mission assessment containing:
+
+- Selected landing coordinates.
+- Selected date.
+- Analysis duration.
+- Terrain source.
+- Ephemeris source.
+- Solar analysis.
+- Communication analysis.
+- Joint operational windows.
+- Terrain suitability.
+- Uncertainty.
+- Assumptions.
+- Limitations.
+- Source references.
+
+Every reported metric must come from actual calculations.
+
+## F. Final UI quality
+
+Revisit every screen.
+
+Maintain:
+- Manrope primary typography.
+- IBM Plex Mono scientific typography.
+- Consistent spacing.
+- Clean hierarchy.
+- Eye-soothing colours.
+- Professional charts.
+- Minimal navigation.
+- Smooth but restrained transitions.
+
+The global lunar globe should be visually dominant on the explorer page.
+
+Mission Analysis should be the main working environment.
+
+The data explorer should be separate from the primary workflow.
+
+Do not clutter the first screen with raw scientific metadata.
+
+## G. Remove all nonfunctional or misleading content
+
+Search the complete repository for:
+- Hardcoded sample metrics.
+- Fake coordinates.
+- Placeholder charts.
+- Mock API responses.
+- Dummy site records.
+- Randomized scientific values.
+- Decorative buttons.
+- Simulated loading results.
+- Misleading NASA certification or endorsement claims.
+
+Remove or clearly disable them.
+
+If a real source is unavailable, show a clean unavailable state.
+
+Never substitute fake results.
+
+## H. Final acceptance testing
+
+Test the complete product.
+
+1. Global lunar globe loads and displays complete available coverage.
+2. Adjacent WMTS tiles align correctly.
+3. Globe zooming and rotation work.
+4. Faustini regional terrain loads from the actual DEM.
+5. XYZI observations are processed correctly.
+6. Raster CRS and spatial alignment are verified.
+7. Custom coordinates are validated.
+8. Horizons queries return actual measurements.
+9. Sun and Earth visualization updates with time.
+10. Terrain obstruction is calculated from real data.
+11. Solar analysis updates with location and date.
+12. Communication analysis updates with location and date.
+13. Joint operating windows are calculated correctly.
+14. Scenario comparison uses real computed results.
+15. No clone-based analysis is falsely displayed.
+16. Reports contain real values and traceable sources.
+17. All navigation and controls work.
+18. No major console or backend errors remain.
+
+Do not declare a test passed without executing it.
+
+Provide a final engineering report containing:
+- Completed functionality.
+- Actual datasets discovered.
+- API integrations verified.
+- Scientific calculations tested.
+- Known limitations.
+- Failed or incomplete tests.
+- Startup instructions.
+
+FINAL PRODUCT STANDARD:
+
+LUNARIS must feel like a refined planetary science and lunar mission-planning product.
+
+It must be visually calm, technically defensible, responsive and easy to use.
+
+Preserve all working functionality.
+
+Never sacrifice scientific accuracy for visual appearance.
+
+Do not rebuild the application from scratch.
